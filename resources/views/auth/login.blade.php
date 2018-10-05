@@ -5,8 +5,19 @@
     <b-row>
         <b-col> </b-col>
         <b-col cols="8">
-        <b-card title="Inicio de Sesion">
-            <b-alert show>Por Favor ingresa tus datos</b-alert>
+        <b-card title="Inicio de Sesion" class="my-3">
+            @if ($errors->any())
+                <b-alert show variant="danger">
+                    <ul class="mb-0"> 
+                        @foreach ($errors->all() as $error)
+                            <li> {{$error }} </li>
+                        @endforeach
+                    </ul>
+                </b-alert>
+            @else
+                <b-alert show>Por Favor ingresa tus datos</b-alert>
+            @endif
+            
             <p class="card-text">  </p>
             <form  method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
